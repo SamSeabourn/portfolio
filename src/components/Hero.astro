@@ -2,9 +2,14 @@
 import SVG1 from '../assets/layer-1.svg';
 import SVG2 from '../assets/layer-2.svg';
 import SVG3 from '../assets/layer-3.svg';
+import downloadLogo from '../assets/download-logo.svg';
+import Button from './Button.astro';
 ---
 
 <div class="svg-stack">
+	<div class="resume-button-wrapper">
+		<Button href="/resume.pdf" text="Download Resume" icon={downloadLogo.src} type="primary" download />
+	</div>
 	<svg id="svg1" data-svg-url={SVG1.src} class="stacked-svg" style="opacity: 0"></svg>
 	<svg id="svg2" data-svg-url={SVG2.src} class="stacked-svg" style="opacity: 0"></svg>
 	<svg id="svg3" data-svg-url={SVG3.src} class="stacked-svg" style="opacity: 0"></svg>
@@ -41,6 +46,20 @@ import SVG3 from '../assets/layer-3.svg';
 		margin-bottom: 4vh;
 		padding-top: 4vh;
 		transform: translateZ(0);
+	}
+
+	.resume-button-wrapper {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+		z-index: 20;
+	}
+
+	@media (max-width: 768px) {
+		.resume-button-wrapper {
+			top: 1rem;
+			right: 1rem;
+		}
 	}
 
 	.stacked-svg {
@@ -114,12 +133,11 @@ import SVG3 from '../assets/layer-3.svg';
 		padding: 0.25rem;
 		transform: rotate(-2deg) translateY(calc((clamp(300px, 40vw, 500px) * 0.75 / 2) + 50px));
 		font-size: clamp(1rem, 2vw, 2.5rem);
-
 		color: #000;
 		text-align: center;
 		background-color: var(--bg);
 		opacity: 0.9;
-		letter-spacing: -0.02em;
+		letter-spacing: -0.01em;
 	}
 
 	@media (prefers-color-scheme: dark) {

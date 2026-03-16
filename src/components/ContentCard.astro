@@ -108,6 +108,21 @@ const { title, skunkworks = false, speed = '10s' } = Astro.props;
 		padding: clamp(8px, 1vw, 12px) 0;
 	}
 
+	/* Mobile adjustments for skunkworks banner */
+	@media (max-width: 768px) {
+		.marquee-wrapper {
+			left: -80%;
+			width: clamp(150vw, 200vw, 1400px);
+		}
+	}
+
+	@media (max-width: 480px) {
+		.marquee-wrapper {
+			left: -90%;
+			width: 200vw;
+		}
+	}
+
 	.marquee-track {
 		display: flex;
 		width: max-content; /* Critical: Track must be size of content */

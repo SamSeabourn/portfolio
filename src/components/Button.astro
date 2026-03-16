@@ -6,9 +6,11 @@ interface Props {
 	href?: string;
 	tilt?: number;
 	onclick?: string;
+	download?: boolean;
+	icon?: string;
 }
 
-const { text, type = 'primary', disabled = false, href, tilt, onclick } = Astro.props;
+const { text, type = 'primary', disabled = false, href, tilt, onclick, download = false, icon } = Astro.props;
 const Tag = href ? 'a' : 'button';
 const tiltStyle = tilt ? `transform: rotate(${tilt}deg);` : '';
 ---
@@ -22,8 +24,10 @@ const tiltStyle = tilt ? `transform: rotate(${tilt}deg);` : '';
 				href={href}
 				style={tiltStyle}
 				onclick={onclick}
+				download={download ? true : undefined}
 				aria-disabled={disabled ? 'true' : undefined}
 			>
+				{icon && <img src={icon} alt="" class="button-icon" />}
 				{text}
 			</Tag>
 			<span class="warning-text">⚠️ WARNING EXPERIMENTAL ⚠️</span>
@@ -35,8 +39,10 @@ const tiltStyle = tilt ? `transform: rotate(${tilt}deg);` : '';
 			href={href}
 			style={tiltStyle}
 			onclick={onclick}
+			download={download ? true : undefined}
 			aria-disabled={disabled ? 'true' : undefined}
 		>
+			{icon && <img src={icon} alt="" class="button-icon" />}
 			{text}
 		</Tag>
 	)
@@ -61,7 +67,17 @@ const tiltStyle = tilt ? `transform: rotate(${tilt}deg);` : '';
 		transition: all 0.2s ease;
 		outline: none;
 		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.button-icon {
+		width: 1.875rem;
+		height: 1.875rem;
+		margin-right: 0.5rem;
 		display: inline-block;
+		flex-shrink: 0;
 	}
 
 	.button:disabled {
