@@ -7,7 +7,7 @@ export default defineConfig({
 	output: 'static',
 	scopedStyleStrategy: 'class',
 	site: 'https://samseabourn.github.io',
-	base: '/portfolio',
+	base: '/',
 	integrations: [
 		rename({
 			rename: {
