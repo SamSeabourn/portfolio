@@ -8,6 +8,7 @@ import CenterContainer from '../../../components/CenterContainer.astro';
 import Paragraph from '../../../components/Paragraph.astro';
 import Spacer from '../../../components/Spacer.astro';
 import DemoVideo from '../../../components/DemoVideo.astro';
+import { asset } from '../../../utils/base-url';
 ---
 
 <Layout>
@@ -28,7 +29,7 @@ import DemoVideo from '../../../components/DemoVideo.astro';
 					From the 2024 Olympics to daily binge watching, every stream on TV runs through code I've written.
 				</Paragraph>
 				<Spacer />
-				<DemoVideo src="/stan.mp4" poster="/stan-poster.jpg" width={1280} height={720} />
+				<DemoVideo src={asset('stan.mp4')} poster={asset('stan-poster.jpg')} width={1280} height={720} />
 			</div>
 			<div class="pad">
 				<Paragraph heading="Open Source,Awards, and Big Wins">
