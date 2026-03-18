@@ -37,19 +37,11 @@
 		window.trexStomp = function (intensity = 5) {
 			const el = document.body;
 			const originalStyle = el.style.position;
-
-			// Ensure the body can be moved relative to its normal spot
 			el.style.position = 'relative';
-
-			// 1. The initial heavy impact (Down)
 			el.style.top = `${intensity}px`;
-
-			// 2. The bounce back (Up)
 			setTimeout(() => {
 				el.style.top = `${-intensity / 2}px`;
 			}, 50);
-
-			// 3. The settle (Back to 0)
 			setTimeout(() => {
 				el.style.top = '0px';
 				el.style.position = originalStyle; // Reset to original state
@@ -77,13 +69,13 @@
 				backgroundColor: 'black',
 			});
 
-		const appCanvas = pixiApp.view as HTMLCanvasElement;
-		appCanvas.style.position = 'fixed';
-		appCanvas.style.zIndex = '10';
-		appCanvas.style.top = '0';
-		appCanvas.id = '🦖_ _ _ _ _ ';
-		appCanvas.style.pointerEvents = 'none';
-		appCanvas.style.filter = `hue-rotate(${Math.random() * 20 - 10}deg)`;
+			const appCanvas = pixiApp.view as HTMLCanvasElement;
+			appCanvas.style.position = 'fixed';
+			appCanvas.style.zIndex = '10';
+			appCanvas.style.top = '0';
+			appCanvas.id = '🦖_ _ _ _ _ ';
+			appCanvas.style.pointerEvents = 'none';
+			appCanvas.style.filter = `hue-rotate(${Math.random() * 20 - 10}deg)`;
 
 			dinoRoot.appendChild(appCanvas);
 

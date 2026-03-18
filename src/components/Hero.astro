@@ -8,7 +8,13 @@ import Button from './Button.astro';
 
 <div class="svg-stack">
 	<div class="resume-button-wrapper">
-		<Button href="/resume.pdf" text="Download Resume" icon={downloadLogo.src} type="primary" download />
+		<Button
+			href="/resume.pdf"
+			text="Download Resume"
+			icon={downloadLogo.src}
+			type="primary"
+			download
+		/>
 	</div>
 	<svg id="svg1" data-svg-url={SVG1.src} class="stacked-svg" style="opacity: 0"></svg>
 	<svg id="svg2" data-svg-url={SVG2.src} class="stacked-svg" style="opacity: 0"></svg>
@@ -137,7 +143,6 @@ import Button from './Button.astro';
 		text-align: center;
 		background-color: var(--bg);
 		opacity: 0.9;
-		letter-spacing: -0.01em;
 	}
 
 	@media (prefers-color-scheme: dark) {
