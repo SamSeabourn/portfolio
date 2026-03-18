@@ -4,14 +4,12 @@ import SVG2 from '../assets/layer-2.svg';
 import SVG3 from '../assets/layer-3.svg';
 import downloadLogo from '../assets/download-logo.svg';
 import Button from './Button.astro';
-
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <div class="svg-stack">
 	<div class="resume-button-wrapper">
 		<Button
-			href={`${baseUrl}resume.pdf`}
+			href="/resume.pdf"
 			text="Download Resume"
 			icon={downloadLogo.src}
 			type="primary"
@@ -23,10 +21,10 @@ const baseUrl = import.meta.env.BASE_URL;
 	<svg id="svg3" data-svg-url={SVG3.src} class="stacked-svg" style="opacity: 0"></svg>
 	<div class="stacked">
 		<picture>
-			<source media="(min-width: 1200px)" srcset={`${baseUrl}hero-lg.png`} width="700" height="700" />
-			<source media="(min-width: 416px)" srcset={`${baseUrl}hero-md.png`} width="450" height="450" />
+			<source media="(min-width: 1200px)" srcset="/hero-lg.png" width="700" height="700" />
+			<source media="(min-width: 416px)" srcset="/hero-md.png" width="450" height="450" />
 			<img
-				src={`${baseUrl}hero-sm.png`}
+				src="/hero-sm.png"
 				alt="Engineer sitting cross legged"
 				width="300"
 				height="300"

@@ -34,8 +34,6 @@ import zustandLogo from '../assets/zustand-logo.svg';
 import pwLogo from '../assets/pw-logo.svg';
 import ButtonWrapper from '../components/ButtonWrapper.astro';
 import Footer from '../components/Footer.astro';
-
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout>
@@ -45,8 +43,8 @@ const baseUrl = import.meta.env.BASE_URL;
 			<Bento associatedLogos={[]} layoutVariant="alt">
 				<slot slot="top-left">
 					<img
-						src={`${baseUrl}line-drawing-md.png`}
-						srcset={`${baseUrl}line-drawing-sm.png 150w, ${baseUrl}line-drawing-md.png 200w, ${baseUrl}line-drawing-lg.png 300w`}
+						src="/line-drawing-md.png"
+						srcset="/line-drawing-sm.png 150w, /line-drawing-md.png 200w, /line-drawing-lg.png 300w"
 						sizes="(min-width: 768px) 200px, 150px"
 						alt="Sam Line drawing"
 						width="150"
@@ -101,7 +99,7 @@ const baseUrl = import.meta.env.BASE_URL;
 					>
 					<Spacer />
 					<ButtonWrapper position="right">
-						<Button href={`${baseUrl}projects/stan`} text="More about Stan" />
+						<Button href="/projects/stan" text="More about Stan" />
 					</ButtonWrapper>
 				</slot>
 			</Bento>
@@ -132,7 +130,7 @@ const baseUrl = import.meta.env.BASE_URL;
 					</Paragraph>
 					<Spacer />
 					<ButtonWrapper position="right">
-						<Button href={`${baseUrl}projects/browsersaurus`} text="More about Browsersaurus" />
+						<Button href="/projects/browsersaurus" text="More about Browsersaurus" />
 					</ButtonWrapper>
 				</slot>
 			</Bento>
