@@ -9,14 +9,14 @@ import { asset } from '../utils/base-url';
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Sam Seabourn | Frontend Engineer</title>
+		<title>Sam Seabourn | Senior Frontend Engineer</title>
 		<meta
 			name="description"
-			content="Frontend engineer specialising in high-performance TypeScript systems for Smart TVs, browser extensions, and large-scale platforms."
+			content="Senior Frontend Engineer specialising in high-performance TypeScript systems for Smart TVs, browser extensions, and large-scale platforms."
 		/>
 		<link
 			rel="preload"
-			href={asset('DepartureMono-Regular-core.woff2')}
+			href={asset('DepartureMono-Regular-full.woff2')}
 			as="font"
 			type="font/woff2"
 			crossorigin
@@ -24,16 +24,20 @@ import { asset } from '../utils/base-url';
 
 		<script>
 			import { animateSvgPath } from '../helpers/animate-svg-path';
+			import { mountSVG } from '../helpers/mount-svg';
+			import { createFirstInteractionListener } from '../helpers/create-first-interaction-listener';
+			window.createFirstInteractionListener = createFirstInteractionListener;
+			window.mountSVG = mountSVG;
 			window.animateSvgPath = animateSvgPath;
 		</script>
 		<meta name="robots" content="index, follow" />
 		<link rel="icon" type="image/svg+xml" href={asset('favicon.svg')} />
 		<link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Sam Seabourn | Frontend Systems Engineer" />
+		<meta property="og:title" content="Sam Seabourn | Senior Frontend Engineer" />
 		<meta
 			property="og:description"
-			content="Frontend Systems Engineer with 6+ years of experience building performance critical TypeScript systems for Smart TVs, browser extensions and large-scale streaming platforms. Google contributor."
+			content="Senior Frontend Engineer with 6+ years of experience building performance critical TypeScript systems for Smart TVs, browser extensions and large-scale streaming platforms. Google contributor."
 		/>
 		<meta property="og:url" content={`https://samseabourn.github.io${asset('')}`} />
 		<meta property="og:image" content={`https://samseabourn.github.io${asset('hero-md.png')}`} />

@@ -253,24 +253,23 @@ const generateStats = async () => {
 		`CSS FILEs: ${formatBytesFixed(totalsByType.css)}`,
 		`JS FILES: ${formatBytesFixed(totalsByType.js)}`,
 		' ',
+		'LCP: ░░░.░░s',
+		'TBT: ░░░ms',
+		'CLS: ░.░░░',
+		'NET: ░ '
 	].join('\n');
 
 	if (indexHtmlContent.includes('`__STATS__`')) {
-		// Step 1: Build temporary stats with current measurement
 		const tempStatsString = buildStatsString(indexGzipSize);
 
-		// Step 2: Simulate injection to measure gzip overhead
 		const htmlWithTempStats = indexHtmlContent.replace('`__STATS__`', tempStatsString);
 		const gzipWithStats = await getGzipSize(htmlWithTempStats);
 
-		// Step 3: Calculate the overhead from injecting stats
 		const statsInjectionOverhead = gzipWithStats - indexGzipSize;
 
-		// Step 4: Build final stats with corrected HTML size
 		const finalIndexGzipSize = indexGzipSize + statsInjectionOverhead;
 		const finalStatsString = buildStatsString(finalIndexGzipSize);
 
-		// Step 5: Inject final stats (now accurate!)
 		const htmlWithFinalStats = indexHtmlContent.replace('`__STATS__`', finalStatsString);
 		await writeFile(indexPath, htmlWithFinalStats);
 

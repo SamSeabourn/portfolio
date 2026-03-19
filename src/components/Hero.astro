@@ -21,27 +21,34 @@ import { asset } from '../utils/base-url';
 	<svg id="svg2" data-svg-url={SVG2.src} class="stacked-svg" style="opacity: 0"></svg>
 	<svg id="svg3" data-svg-url={SVG3.src} class="stacked-svg" style="opacity: 0"></svg>
 	<div class="stacked">
-		<picture>
-			<source media="(min-width: 1200px)" srcset={asset('hero-lg.png')} width="700" height="700" />
-			<source media="(min-width: 416px)" srcset={asset('hero-md.png')} width="450" height="450" />
-			<img
-				src={asset('hero-sm.png')}
-				alt="Engineer sitting cross legged"
-				width="300"
-				height="300"
-				loading="eager"
-				fetchpriority="high"
-				style="opacity: 1; image-rendering: pixelated;"
-				decoding="async"
-				class="sam-pic"
-			/>
-		</picture>
+		<div class="sam-pic-wrapper">
+			<picture>
+				<source
+					media="(min-width: 1200px)"
+					srcset={asset('hero-lg.png')}
+					width="700"
+					height="700"
+				/>
+				<source media="(min-width: 416px)" srcset={asset('hero-md.png')} width="450" height="450" />
+				<img
+					src={asset('hero-sm.png')}
+					alt="Engineer sitting cross legged"
+					width="300"
+					height="300"
+					loading="eager"
+					fetchpriority="high"
+					style="opacity: 1; image-rendering: pixelated;"
+					decoding="async"
+					class="sam-pic"
+				/>
+			</picture>
+		</div>
 	</div>
 	<div class="stacked">
 		<span class="heading hero-text">I BUILD THINGS</span>
 	</div>
 	<div class="hero-sub-text-wrapper">
-		<p class="hero-sub-text">Sam - Frontend Systems Engineer - Sydney</p>
+		<p class="hero-sub-text">Sam - Senior Frontend Engineer - Sydney</p>
 	</div>
 </div>
 
@@ -59,7 +66,7 @@ import { asset } from '../utils/base-url';
 		position: absolute;
 		top: 2rem;
 		right: 2rem;
-		z-index: 20;
+		z-index: 200;
 	}
 
 	@media (max-width: 768px) {
@@ -94,9 +101,10 @@ import { asset } from '../utils/base-url';
 		opacity: 1;
 	}
 
-	.sam-pic {
+	.sam-pic-wrapper {
 		width: clamp(300px, 50vw, 600px);
 		height: clamp(300px, 50vw, 600px);
+		background-color: #ebdf45;
 		clip-path: polygon(
 			39% 8%,
 			37% 34%,
@@ -113,6 +121,11 @@ import { asset } from '../utils/base-url';
 			73% 1%,
 			46% 0%
 		);
+	}
+
+	.sam-pic {
+		width: 100%;
+		height: 100%;
 	}
 
 	.hero-text {
@@ -154,35 +167,34 @@ import { asset } from '../utils/base-url';
 	}
 </style>
 
-<script>
-	import { createFirstInteractionListener } from '../helpers/create-first-interaction-listener';
-	import { mountSVG } from '../helpers/mount-svg';
+<script is:inline>
+	// Use functions from window (inlined in Layout.astro head)
 	window.addEventListener('load', () => {
 		requestIdleCallback(async () => {
-			createFirstInteractionListener(async () => {
+			window.createFirstInteractionListener(async () => {
 				const svg1 = document.getElementById('svg1');
 				const svg2 = document.getElementById('svg2');
 				const svg3 = document.getElementById('svg3');
 
-				const svg1Url = svg1!.getAttribute('data-svg-url');
-				const svg2Url = svg2!.getAttribute('data-svg-url');
-				const svg3Url = svg3!.getAttribute('data-svg-url');
+				const svg1Url = svg1.getAttribute('data-svg-url');
+				const svg2Url = svg2.getAttribute('data-svg-url');
+				const svg3Url = svg3.getAttribute('data-svg-url');
 
-				if (svg1Url) await mountSVG(svg1, svg1Url);
-				if (svg2Url) await mountSVG(svg2, svg2Url);
-				if (svg3Url) await mountSVG(svg3, svg3Url);
+				if (svg1Url) await window.mountSVG(svg1, svg1Url);
+				if (svg2Url) await window.mountSVG(svg2, svg2Url);
+				if (svg3Url) await window.mountSVG(svg3, svg3Url);
 
 				await window.animateSvgPath(svg1, {
-					duration: 1,
-					steps: 20,
+					duration: 0.5,
+					steps: 15,
 				});
 				await window.animateSvgPath(svg2, {
-					duration: 1.5,
-					steps: 20,
+					duration: 1,
+					steps: 15,
 				});
 				await window.animateSvgPath(svg3, {
-					duration: 2,
-					steps: 30,
+					duration: 1.5,
+					steps: 15,
 				});
 			});
 		});

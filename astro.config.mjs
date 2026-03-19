@@ -26,7 +26,7 @@ export default defineConfig({
 		}),
 		playformInline({
 			Beasties: true,
-			Fonts: true,
+			Fonts: false,
 			SVG: false,
 			Logger: 2
 		}),

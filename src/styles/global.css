@@ -77,27 +77,12 @@ button {
 }
 @font-face {
 	font-family: 'Departure Mono';
-	src: url('/DepartureMono-Regular-core.woff2') format('woff2');
-	unicode-range: U+0020-007F;
-	text-rendering: optimizeSpeed;
-	font-weight: 700;
-	font-style: normal;
-	font-display: optional;
-	letter-spacing: -0.022em;
-	line-height: 1.15;
-	font-display: swap;
-}
-@font-face {
-	font-family: 'Departure Mono';
 	src: url('/DepartureMono-Regular-full.woff2') format('woff2');
-	unicode-range: U+0000-FFFF;
-	text-rendering: optimizeLegibility;
 	font-weight: 700;
 	font-style: normal;
 	font-display: optional;
-	letter-spacing: -0.022em;
-	line-height: 1.15;
 }
+
 
 .big-heading {
 	font-family:

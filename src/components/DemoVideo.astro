@@ -123,8 +123,6 @@ const { src, poster, alt = 'Demo video', width, height } = Astro.props;
 </style>
 
 <script>
-	import { createFirstInteractionListener } from '../helpers/create-first-interaction-listener';
-
 	document.addEventListener('DOMContentLoaded', () => {
 		const containers = document.querySelectorAll('[data-video-container]');
 
@@ -169,7 +167,7 @@ const { src, poster, alt = 'Demo video', width, height } = Astro.props;
 			container.addEventListener('click', togglePlay);
 
 			// Load video after first user interaction anywhere on page
-			createFirstInteractionListener(loadVideo);
+			window.createFirstInteractionListener(loadVideo);
 		});
 	});
 </script>

@@ -5,12 +5,22 @@ interface AnimateSvgPathOptions {
 	sequencePaths?: boolean;
 }
 
+interface CreateFirstInteractionListenerOptions {
+	events?: string[];
+	delay?: boolean;
+}
+
 declare global {
 	interface Window {
 		handDrawnSVGIndex: number;
 		animateSvgPath: (element: any, options?: AnimateSvgPathOptions) => Promise<void>;
-		trexStomp: () => void
+		mountSVG: (target: SVGElement, url: string) => Promise<void>;
+		createFirstInteractionListener: (
+			callback: () => void,
+			options?: CreateFirstInteractionListenerOptions
+		) => () => void;
+		trexStomp: () => void;
 	}
 }
 
-export { };
+export {};

@@ -1,5 +1,3 @@
-import { mountSVG } from './mount-svg';
-
 export const initIconObservers = async (): Promise<void> => {
 	const handDrawElements = document.querySelectorAll('[data-hand-draw]');
 
@@ -15,7 +13,7 @@ export const initIconObservers = async (): Promise<void> => {
 				if (entry.isIntersecting) {
 					const svgUrl = element.getAttribute('data-svg-url');
 					if (svgUrl) {
-						await mountSVG(element as SVGElement, svgUrl);
+						await window.mountSVG(element as SVGElement, svgUrl);
 					}
 					await window.animateSvgPath(element as SVGElement, { duration: 1, steps: 3 });
 					element.setAttribute('style', 'opacity: 1;');

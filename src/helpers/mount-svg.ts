@@ -1,16 +1,19 @@
 export async function mountSVG(target: any, url: string): Promise<void> {
 	if (!target || !(target instanceof SVGElement)) {
-		throw new TypeError('mountSVG: target must be an SVGElement');
+		console.error('mountSVG: target must be an SVGElement');
+		return;
 	}
 	if (!url || typeof url !== 'string') {
-		throw new TypeError('mountSVG: url must be a non-empty string');
+		console.error('mountSVG: url must be a non-empty string');
+		return;
 	}
 
 	const response = await fetch(url);
 	if (!response.ok) {
-		throw new Error(
+		console.error(
 			`mountSVG: Failed to fetch ${url} - ${response.status} ${response.statusText}`
 		);
+		return;
 	}
 
 	const svgText = await response.text();
@@ -19,12 +22,14 @@ export async function mountSVG(target: any, url: string): Promise<void> {
 
 	const parserError = doc.querySelector('parsererror');
 	if (parserError) {
-		throw new Error(`mountSVG: Invalid SVG content from ${url}`);
+		console.error(`mountSVG: Invalid SVG content from ${url}`);
+		return
 	}
 
 	const sourceSVG = doc.querySelector('svg');
 	if (!sourceSVG) {
-		throw new Error(`mountSVG: No <svg> element found in ${url}`);
+		console.error(`mountSVG: No <svg> element found in ${url}`);
+		return
 	}
 
 	const preservedAttrs = new Map<string, string>();

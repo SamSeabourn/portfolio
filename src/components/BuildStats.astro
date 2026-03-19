@@ -91,6 +91,7 @@
 					};
 
 					const statsString = [
+						'',
 						`LCP: ${formatTime(metrics.lcp)}`,
 						`TBT: ${formatMs(metrics.tbt)}`,
 						`CLS: ${formatCls(metrics.cls)}`,
@@ -104,7 +105,17 @@
 		};
 
 		getRuntimeStats().then((runtimeStats) => {
-			statsEl.textContent = statsEl.textContent + '\n' + runtimeStats;
+			const currentText = statsEl.textContent;
+			const lines = currentText.split('\n');
+
+			const runtimeStartIndex = lines.findIndex((line) => line.trim().startsWith('LCP:'));
+
+			if (runtimeStartIndex !== -1) {
+				const buildStats = lines.slice(0, runtimeStartIndex).join('\n');
+				statsEl.textContent = buildStats + runtimeStats;
+			} else {
+				statsEl.textContent = currentText + '\n' + runtimeStats;
+			}
 		});
 	}
 </script>
@@ -113,10 +124,10 @@
 	p {
 		font-family:
 			ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', 'Courier New', monospace;
-		white-space: pre-line;
+		white-space: pre;
 		position: absolute;
 		z-index: 10;
-		font-size: 13px;
+		font-size: 11px;
 		left: 1rem;
 		color: var(--accent);
 		top: 1rem;
