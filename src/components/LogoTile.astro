@@ -12,12 +12,19 @@ const { svgSrc, title, id } = Astro.props;
 	data-hand-draw
 	data-svg-url={svgSrc || 'fuckk'}
 	id={id}
+	class="logo-svg"
 	width="150"
 	height="150"
 	style="opacity: 0"></svg>
 <h3 class="subheading">{title}</h3>
 
 <style>
+	.logo-svg {
+		max-width: 100%;
+		height: auto;
+		width: 100%;
+	}
+
 	h3 {
 		text-align: center;
 	}

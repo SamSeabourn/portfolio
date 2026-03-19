@@ -70,7 +70,7 @@ const { title, skunkworks = false, speed = '10s' } = Astro.props;
 	.card-content {
 		position: relative;
 		border: 0;
-		width: clamp(80%, 85vw, 90%);
+		width: clamp(96%, 85vw, 90%);
 		max-width: 1400px;
 		z-index: 1;
 	}
@@ -83,6 +83,12 @@ const { title, skunkworks = false, speed = '10s' } = Astro.props;
 	}
 	.slot-container {
 		padding: 2rem;
+	}
+
+	@media (max-width: 535px) {
+		.slot-container {
+			padding: 0;
+		}
 	}
 
 	/* --- The Animated Banner --- */

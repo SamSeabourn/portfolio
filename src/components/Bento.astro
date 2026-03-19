@@ -28,7 +28,7 @@ const { associatedLogos, layoutVariant = 'default' } = Astro.props;
 <style>
 	.bento-container {
 		display: grid;
-		grid-template-columns: repeat(1, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 		padding: 20px;
 		margin: 0 auto;
@@ -42,10 +42,11 @@ const { associatedLogos, layoutVariant = 'default' } = Astro.props;
 		font-weight: bold;
 		aspect-ratio: 1 / 1;
 		flex-direction: column;
+		grid-column: span 1;
 	}
 
 	.featured {
-		grid-column: span 1;
+		grid-column: span 2;
 		padding: 1rem;
 		aspect-ratio: auto;
 	}
@@ -63,12 +64,13 @@ const { associatedLogos, layoutVariant = 'default' } = Astro.props;
 	@media (max-width: 535px) {
 		.item {
 			aspect-ratio: auto;
-			padding: 1rem;
+			padding: 0.5rem;
 			min-height: auto;
 		}
 
 		.featured {
-			padding: 1rem;
+			padding: 0.5rem;
+			grid-column: span 2;
 		}
 
 		.featured.first {
@@ -76,9 +78,16 @@ const { associatedLogos, layoutVariant = 'default' } = Astro.props;
 			align-items: center;
 		}
 
+		.featured.first img,
+		.featured.first svg {
+			max-width: 60%;
+			height: auto;
+		}
+
 		.featured.second {
 			justify-content: flex-start;
 			align-items: stretch;
+			padding: 0.5rem;
 		}
 	}
 
