@@ -6,7 +6,7 @@ import rename from 'astro-rename';
 export default defineConfig({
 	output: 'static',
 	scopedStyleStrategy: 'class',
-	site: 'https://samseabourn.github.io',
+	site: 'https://samseabourn.com',
 	base: '/',
 	integrations: [
 		rename({
