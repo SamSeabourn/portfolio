@@ -116,6 +116,19 @@ button {
 	-webkit-user-select: none;
 }
 
+.hero-heading {
+	font-family:
+		'Departure Mono Core', 'Departure Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+		'Courier New', monospace;
+	font-weight: 700;
+	font-style: normal;
+	font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+	line-height: 1.15;
+	letter-spacing: -4.5;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
 .subheading {
 	font-family:
 		ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', 'Courier New', monospace;
