@@ -1,0 +1,136 @@
+---
+import Layout from '../../layout/Layout.astro';
+import ProjectBanner from '../../components/ProjectBanner.astro';
+import PwEmbeddedBanner from '../../assets/pw-embedded-banner.svg';
+import PwEmbeddedBannerDoodle from '../../assets/pw-embedded-banner-doodle.svg';
+
+import ContentCard from '../../components/ContentCard.astro';
+import CenterContainer from '../../components/CenterContainer.astro';
+import Paragraph from '../../components/Paragraph.astro';
+import Spacer from '../../components/Spacer.astro';
+import Redacted from '../../components/Redacted.astro';
+// import DemoVideo from '../../components/DemoVideo.astro';
+// import { asset } from '../../utils/base-url';
+---
+
+<Layout>
+	<CenterContainer>
+		<ProjectBanner doodleId="pwDoodle">
+			<PwEmbeddedBanner slot="logo" />
+			<PwEmbeddedBannerDoodle slot="doodle" />
+		</ProjectBanner>
+		<ContentCard title="Playwright-Embedded">
+			<div class="pad">
+				<Paragraph heading="Testing the Untestable,Automation for Embedded Browsers">
+					A testing library solving a problem no existing tool handles: running E2E tests against
+					real embedded hardware: smart TVs, consoles, infotainment systems where browsers expose no
+					CDP, no DevTools, and no native automation surface.
+					<br />
+					It brings Playwright native test authoring to the most locked down devices on the network, without
+					touching native platform tooling or writing a single device specific line of glue code.
+				</Paragraph>
+				<Spacer />
+				{/* TODO: replace with pw-embedded.mp4 once recorded */}
+				<!-- <DemoVideo
+					src={asset('pw-embedded.mp4')}
+					poster={asset('stan-poster.jpg')}
+					width={1280}
+					height={720}
+				/> -->
+			</div>
+			<div class="pad">
+				<Paragraph heading="The Problem,Embedded Browsers Don't Play Nice">
+					<b>No DevTools Protocol:</b> Standard Playwright assumes CDP. On embedded browsers that assumption
+					breaks completely, the protocol port is closed, and DevTools access itself isn't guaranteed.
+					The automation surface most engineers take for granted simply doesn't exist.
+					<br />
+					<br />
+					<b>No Native Input:</b> Real remotes and physical input can't be scripted at the OS level without
+					deep platform native integration. That means separate tooling, separate test suites, and inevitable
+					drift between test environments and what users actually experience.
+				</Paragraph>
+			</div>
+			<div class="pad">
+				<Paragraph heading="The Solution,████ ████████ ████">
+					<b>Device Capture:</b>
+					<Redacted
+						>███████████ ██████ ██ ████████ ████ ███ ██████ ██████████ ████████ ███████ ██ ██
+						████████ ████ ███ ██████ ██████████</Redacted
+					>
+					<br />
+					<br />
+					<b>Transport:</b>
+					<Redacted
+						>███████ ██ ████████ ██ ████████ ████ ███ ██████ ██████████ ████ ███████████ ████████
+						█████ ██████ ████████ ███████ ██ ████████</Redacted
+					>
+					<br />
+					<br />
+					<b>Assertions:</b>
+					<Redacted
+						>████████ ███ ██████ ██████ ███ █ █████ ████████ ████████ ████ ████ ██████████ ████████
+						██ ████████ ██ ████████</Redacted
+					>
+					<br />
+					<br />
+					<b>Synthetic Input:</b>
+					<Redacted
+						>████████ ██████████ ████ ██████████ ████ ███ ██████ ██ ████████ ████████████ ████████</Redacted
+					>
+					<br />
+					<br />
+					<b>Multi-Device Orchestration:</b> Devices connect with deterministic names. The same test suite
+					can target multiple named devices in sequence. No manual config, no per-device test branches,
+					no hardware juggling. Run it against a 2019 Samsung, a 2022 LG, and a PS5 in one command.
+				</Paragraph>
+			</div>
+			<div class="pad">
+				<Paragraph heading="The Tech Stack">
+					<b>Playwright + TypeScript:</b> Custom fixtures and device connectors let you write standard
+					Playwright test code.
+					<Redacted>████████ ██ ████████ ██████████ ████ ██ ████████ ████████████</Redacted>. No
+					bespoke assertion APIs, no image comparison overhead.
+					<br />
+					<br />
+					<b>Serialisation:</b>
+					<Redacted
+						>████████ ██████████ ████ ██████████ ████ ███ ██████ ██ ████████ ████████████ ████
+						██████ ████████ ████████ ███████ ██████ ██████ ████████ ███ ████████</Redacted
+					>
+					<br />
+					<br />
+					<b>Control Server:</b>
+					<Redacted
+						>███████ ██████████ ████ ██████████ ████ ███ ██████ ██ ████████ ████████████ ████████
+						███████████ ████████ ██ ████████ ████ ████████ ████████</Redacted
+					>
+					<br />
+					<br />
+					<b>Strongly Typed Message Contracts:</b> Every command and response between host and device
+					is typed end-to-end.
+					<Redacted>███ ████████ ████████ ██ ████████████ ████ ██████ ████████</Redacted> at compile time,
+					not silently in a CI run at 2am.
+				</Paragraph>
+			</div>
+			<div class="pad">
+				<Paragraph heading="Why It Matters">
+					Real hardware testing has always meant manual QA cycles or fragile screenshot diffs
+					against a moving target. Playwright-Embedded makes it possible to write deterministic,
+					functional tests against the actual devices users hold in their hands, with the same test
+					authoring experience engineers already know.
+					<br />
+					It's the testing infrastructure that didn't exist, built from scratch to solve a problem the
+					industry hasn't properly addressed.
+				</Paragraph>
+			</div>
+			<Spacer />
+		</ContentCard>
+		<Spacer triple />
+	</CenterContainer>
+</Layout>
+
+<style>
+	.pad {
+		padding: 20px;
+	}
+</style>

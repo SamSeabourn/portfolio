@@ -102,7 +102,7 @@ import { asset } from '../utils/base-url';
 					>
 					<Spacer />
 					<ButtonWrapper position="right">
-						<Button href={asset('projects/stan')} text="More about Stan" />
+						<Button href={asset('stan')} text="More about Stan" />
 					</ButtonWrapper>
 				</slot>
 			</Bento>
@@ -133,7 +133,7 @@ import { asset } from '../utils/base-url';
 					</Paragraph>
 					<Spacer />
 					<ButtonWrapper position="right">
-						<Button href={asset('projects/browsersaurus')} text="More about Browsersaurus" />
+						<Button href={asset('browsersaurus')} text="More about Browsersaurus" />
 					</ButtonWrapper>
 				</slot>
 			</Bento>
@@ -162,7 +162,7 @@ import { asset } from '../utils/base-url';
 					</Paragraph>
 					<Spacer />
 					<ButtonWrapper position="right">
-						<Button text="Coming Soon" disabled={true} />
+						<Button href={asset('playwright-embedded')} text="More info" />
 					</ButtonWrapper>
 				</slot>
 			</Bento>
@@ -188,30 +188,6 @@ import { asset } from '../utils/base-url';
 						year old SCORM course player from legacy JavaScript into React, architected
 						authentication system, and shipped complete UI redesign while maintaining backward
 						compatibility.
-					</Paragraph>
-				</slot>
-			</Bento>
-		</ContentCard>
-		<Spacer double />
-		<ContentCard>
-			<Bento
-				associatedLogos={[
-					{ svgSrc: reactLogo.src, title: 'React' },
-					{ svgSrc: tsLogo.src, title: 'TypeScript' },
-					{ svgSrc: arcLogo.src, title: 'System Architecture' },
-					{ svgSrc: dxLogo.src, title: 'Real-time Data' },
-				]}
-				layoutVariant="alt"
-			>
-				<slot slot="top-left">
-					<Opstar width={400} height={400} class="invert-dark" />
-				</slot>
-				<slot slot="top-right">
-					<Paragraph heading="Frontend Engineer, Opstar (Solentive)">
-						Built real-time weather visualization for aircraft rescue coordination system used by
-						emergency response teams. Integrated NOAA data to display wind patterns and
-						altitude-aware forecasts for ground teams responding to downed aircraft in high-pressure
-						scenarios.
 					</Paragraph>
 				</slot>
 			</Bento>
