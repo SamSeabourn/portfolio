@@ -10,13 +10,13 @@ const { svgSrc, title, id } = Astro.props;
 
 <svg
 	data-hand-draw
-	data-svg-url={svgSrc || 'fuckk'}
+	data-svg-url={svgSrc || ''}
 	id={id}
 	class="logo-svg"
 	width="150"
 	height="150"
 	style="opacity: 0"></svg>
-<h3 class="subheading">{title}</h3>
+<h3 class="logo-heading subheading">{title}</h3>
 
 <style>
 	.logo-svg {

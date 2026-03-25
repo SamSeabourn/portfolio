@@ -40,7 +40,7 @@ const { associatedLogos, layoutVariant = 'default' } = Astro.props;
 		justify-content: center;
 		font-family: sans-serif;
 		font-weight: bold;
-		aspect-ratio: 1 / 1;
+		padding: 1rem 0.25rem;
 		flex-direction: column;
 		grid-column: span 1;
 	}
@@ -152,17 +152,17 @@ const { associatedLogos, layoutVariant = 'default' } = Astro.props;
 
 	@media (min-width: 1280px) {
 		.bento-container {
-			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: repeat(6, 1fr);
 		}
 
 		.variant-alt .featured.first {
-			grid-column: span 1;
+			grid-column: span 2;
 			aspect-ratio: auto;
 			padding: 2rem;
 		}
 
 		.variant-alt .featured.second {
-			grid-column: span 3;
+			grid-column: span 4;
 			padding: 2rem;
 			aspect-ratio: auto;
 		}
