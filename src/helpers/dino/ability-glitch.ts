@@ -1,5 +1,5 @@
-import { GlitchFilter } from 'pixi-filters';
 import { Spine } from '@esotericsoftware/spine-pixi-v7';
+import { GlitchFilter } from 'pixi-filters';
 
 import { getRandomInt } from './get-random-int';
 
@@ -10,7 +10,7 @@ export const abilityGlitch = (character: Spine) => {
         const STYLE_ID = '___glitch_effect_🦖';
 
         const injectStyle = () => {
-            if (document.getElementById(STYLE_ID)) return;
+            if (document.getElementById(STYLE_ID)) { return; }
 
             const style = document.createElement('style');
             style.id = STYLE_ID;
@@ -44,7 +44,7 @@ export const abilityGlitch = (character: Spine) => {
 
         elements.forEach((e) => {
             const text = e.textContent;
-            if (!text || text.length < 1) return;
+            if (!text || text.length < 1) { return; }
 
             const index = Math.floor(Math.random() * text.length);
             const charToGlitch = text[index];

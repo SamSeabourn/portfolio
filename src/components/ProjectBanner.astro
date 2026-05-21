@@ -63,15 +63,15 @@ const { doodleId } = Astro.props as Props;
 			if (doodleId) {
 				const svgWrapper = document.getElementById(doodleId);
 				if (svgWrapper) {
-					await window
-						.animateSvgPath(svgWrapper, {
+					try {
+						await window.animateSvgPath(svgWrapper, {
 							duration: 1,
 							steps: 100,
 							sequencePaths: true,
-						})
-						.catch((error) => {
-							console.error('Path animation error:', error);
 						});
+					} catch (error) {
+						console.error('Path animation error:', error);
+					}
 				}
 			}
 		});

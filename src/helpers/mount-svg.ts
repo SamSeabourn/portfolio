@@ -1,4 +1,4 @@
-export async function mountSVG(target: any, url: string): Promise<void> {
+export const mountSVG = async (target: any, url: string): Promise<void> => {
 	if (!target || !(target instanceof SVGElement)) {
 		console.error('mountSVG: target must be an SVGElement');
 		return;

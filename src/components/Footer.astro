@@ -1,8 +1,8 @@
 ---
-import Button from './Button.astro';
-import linkedinLogo from '../assets/linked-in-logo.svg';
-import githubLogo from '../assets/github.svg';
 import emailLogo from '../assets/email-logo.svg';
+import githubLogo from '../assets/github.svg';
+import linkedinLogo from '../assets/linked-in-logo.svg';
+import Button from './Button.astro';
 
 interface Props {
 	githubUrl?: string;
@@ -22,9 +22,31 @@ const {
 		<div class="contact-grid">
 			<h2 class="heading footer-title">Let's Connect</h2>
 			<div class="contact-items-group">
-				<Button href={linkedinUrl} text="LinkedIn" icon={linkedinLogo.src} type="primary" />
-				<Button href={githubUrl} text="GitHub" icon={githubLogo.src} type="primary" />
-				<Button href={email} text="Email" icon={emailLogo.src} type="primary" id="email-button" />
+				<Button
+					href={linkedinUrl}
+					text="LinkedIn"
+					icon={linkedinLogo.src}
+					type="primary"
+					iconLoading="lazy"
+					iconDecoding="async"
+				/>
+				<Button
+					href={githubUrl}
+					text="GitHub"
+					icon={githubLogo.src}
+					type="primary"
+					iconLoading="lazy"
+					iconDecoding="async"
+				/>
+				<Button
+					href={email}
+					text="Email"
+					icon={emailLogo.src}
+					type="primary"
+					id="email-button"
+					iconLoading="lazy"
+					iconDecoding="async"
+				/>
 			</div>
 		</div>
 	</div>

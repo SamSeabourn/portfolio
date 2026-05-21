@@ -131,13 +131,16 @@ const { src, poster, alt = 'Demo video', width, height } = Astro.props;
 			const overlay = container.querySelector('[data-video-overlay]') as HTMLElement;
 			const videoSrc = videoElement?.getAttribute('data-video-src');
 
-			if (!videoElement || !overlay || !videoSrc) return;
+			if (!videoElement || !overlay || !videoSrc) {
+				return;
+			}
 
 			let isLoaded = false;
 
-			// Load video on first interaction
 			const loadVideo = () => {
-				if (isLoaded) return;
+				if (isLoaded) {
+					return;
+				}
 				isLoaded = true;
 
 				const source = videoElement.querySelector('source');
@@ -147,15 +150,17 @@ const { src, poster, alt = 'Demo video', width, height } = Astro.props;
 				}
 			};
 
-			// Toggle play/pause on click
-			const togglePlay = () => {
+			const togglePlay = async () => {
 				loadVideo();
 
 				if (videoElement.paused) {
-					videoElement.play().then(() => {
+					try {
+						await videoElement.play();
 						overlay.classList.remove('paused');
 						overlay.classList.add('fade-out');
-					});
+					} catch (_) {
+						// autoplay blocked, overlay stays
+					}
 				} else {
 					videoElement.pause();
 					overlay.classList.remove('fade-out');

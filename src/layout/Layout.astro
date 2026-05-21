@@ -2,6 +2,8 @@
 import BuildStats from '../components/BuildStats.astro';
 import '../styles/global.css';
 import { asset } from '../utils/base-url';
+const coreFontUrl = asset('DepartureMono-Regular-core.woff2');
+const fullFontUrl = asset('DepartureMono-Regular-full.woff2');
 ---
 
 <!doctype html>
@@ -21,6 +23,29 @@ import { asset } from '../utils/base-url';
 			type="font/woff2"
 			crossorigin
 		/>
+		<script is:inline define:vars={{ coreFontUrl, fullFontUrl }}>
+			if (sessionStorage.getItem('fonts-loaded')) {
+				document.documentElement.classList.add('fonts-loaded');
+			} else {
+				(async () => {
+					const fonts = await Promise.all([
+						new FontFace('Departure Mono Core', 'url(' + coreFontUrl + ')', {
+							weight: '700',
+							style: 'normal',
+						}).load(),
+						new FontFace('Departure Mono', 'url(' + fullFontUrl + ')', {
+							weight: '700',
+							style: 'normal',
+						}).load(),
+					]);
+					fonts.forEach((f) => {
+						document.fonts.add(f);
+					});
+					document.documentElement.classList.add('fonts-loaded');
+					sessionStorage.setItem('fonts-loaded', '1');
+				})();
+			}
+		</script>
 
 		<script>
 			import { animateSvgPath } from '../helpers/animate-svg-path';
@@ -29,6 +54,19 @@ import { asset } from '../utils/base-url';
 			window.createFirstInteractionListener = createFirstInteractionListener;
 			window.mountSVG = mountSVG;
 			window.animateSvgPath = animateSvgPath;
+		</script>
+		<script
+			is:inline
+			define:vars={{
+				speculationUrls: [asset('browsersaurus/'), asset('stan/'), asset('playwright-embedded/')],
+			}}
+		>
+			if (HTMLScriptElement.supports?.('speculationrules')) {
+				const rules = document.createElement('script');
+				rules.type = 'speculationrules';
+				rules.textContent = JSON.stringify({ prerender: [{ urls: speculationUrls }] });
+				document.head.appendChild(rules);
+			}
 		</script>
 		<meta name="robots" content="index, follow" />
 		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />

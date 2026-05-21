@@ -1,8 +1,9 @@
 import { Spine } from '@esotericsoftware/spine-pixi-v7';
 import { Graphics, Ticker } from 'pixi.js';
+
+import { abilityGlitch } from './ability-glitch';
 import { createDinoSpine } from './create-dino-spine';
 import { getRandomInt } from './get-random-int';
-import { abilityGlitch } from './ability-glitch';
 
 type XPlane = {
     min: number;
@@ -41,7 +42,7 @@ export const spawnDino = async ({
         energy: MAX_ENERGY,
     };
     const scaleNormalized = BASE_SCALE * scale;
-    let isNewlyDiscovered = false;
+    const isNewlyDiscovered = false;
     let direction = 1;
     const animationQueue: Array<() => Promise<unknown>> = [];
 

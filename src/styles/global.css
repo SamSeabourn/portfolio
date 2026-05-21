@@ -87,12 +87,12 @@ button {
 	src: url('/DepartureMono-Regular-core.woff2') format('woff2');
 	font-weight: 700;
 	font-style: normal;
-	font-display: swap;
+	font-display: optional;
 }
 
 .big-heading {
 	font-family:
-		'Departure Mono Core','Departure Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+		ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
 		'Courier New', monospace;
 	font-weight: 700;
 	font-style: normal;
@@ -103,9 +103,15 @@ button {
 	-webkit-user-select: none;
 }
 
+.fonts-loaded .big-heading {
+	font-family:
+		'Departure Mono Core', 'Departure Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+		'Courier New', monospace;
+}
+
 .heading {
 	font-family:
-		'Departure Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+		ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
 		'Courier New', monospace;
 	font-weight: 700;
 	font-style: normal;
@@ -116,9 +122,15 @@ button {
 	-webkit-user-select: none;
 }
 
+.fonts-loaded .heading {
+	font-family:
+		'Departure Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+		'Courier New', monospace;
+}
+
 .hero-heading {
 	font-family:
-		'Departure Mono Core', 'Departure Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+		ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
 		'Courier New', monospace;
 	font-weight: 700;
 	font-style: normal;
@@ -127,6 +139,12 @@ button {
 	letter-spacing: -4.5;
 	user-select: none;
 	-webkit-user-select: none;
+}
+
+.fonts-loaded .hero-heading {
+	font-family:
+		'Departure Mono Core', 'Departure Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+		'Courier New', monospace;
 }
 
 .subheading {

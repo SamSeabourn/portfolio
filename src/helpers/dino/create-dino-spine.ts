@@ -1,5 +1,5 @@
-import { Assets } from 'pixi.js';
 import { Spine } from '@esotericsoftware/spine-pixi-v7';
+import { Assets } from 'pixi.js';
 
 export const createDinoSpine = async () => {
 	await Assets.load('/spine/rex.skel');

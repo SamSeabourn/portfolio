@@ -5,102 +5,91 @@ interface AnimateSvgPathOptions {
 	sequencePaths?: boolean;
 }
 
-export const animateSvgPath = (
+export const animateSvgPath = async (
 	element: Element,
 	{ duration = 2, timingFunction = 'linear', steps = 100, sequencePaths = false }: AnimateSvgPathOptions = {}
 ): Promise<void> => {
-	return new Promise((resolve, reject) => {
-		const svg = element;
-		if (!svg) {
-			reject(new Error('SVG element not found'));
-			return;
+	const svg = element;
+	if (!svg) {
+		throw new Error('SVG element not found');
+	}
+
+	svg.setAttribute('style', 'opacity: 1');
+
+	const paths = Array.from(svg.querySelectorAll('path'));
+	if (paths.length === 0) {
+		return;
+	}
+
+	const uniqueId = crypto.randomUUID();
+	const keyframesName = `drawPath-${uniqueId}`;
+	const styleId = `style-${uniqueId}`;
+	const styleSheet = document.createElement('style');
+	styleSheet.id = styleId;
+	styleSheet.textContent = `
+		@keyframes ${keyframesName} {
+			from { stroke-dashoffset: ${steps}; }
+			to { stroke-dashoffset: 0; }
 		}
+	`;
+	document.head.appendChild(styleSheet);
 
-		svg.setAttribute('style', 'opacity: 1');
+	const preparePath = (path: SVGPathElement) => {
+		path.setAttribute('pathLength', steps.toString());
+		path.style.strokeDasharray = `${steps}`;
+		path.style.strokeDashoffset = `${steps}`;
+		path.style.opacity = '0';
+		path.style.strokeLinejoin = 'round';
+		path.style.strokeLinecap = 'round';
+	};
 
-		const paths = Array.from(svg.querySelectorAll('path'));
-		if (paths.length === 0) {
-			resolve();
-			return;
+	const animateSinglePath = (path: SVGPathElement) => {
+		return new Promise<void>((pathResolve) => {
+			path.style.opacity = '1';
+			path.style.animation = 'none';
+
+			const handleEnd = () => {
+				path.style.strokeDashoffset = '0';
+				pathResolve();
+			};
+
+			path.addEventListener('animationend', handleEnd, { once: true });
+			path.style.animation = `${keyframesName} ${duration}s ${timingFunction} forwards`;
+		});
+	};
+
+	const runAnimations = async () => {
+		if (sequencePaths) {
+			for (const path of paths) {
+				preparePath(path);
+			}
+			for (const path of paths) {
+				await animateSinglePath(path as SVGPathElement);
+			}
+		} else {
+			paths.forEach(preparePath as (path: Element) => void);
+			await Promise.all(
+				paths.map((path) => {
+					path.style.opacity = '1';
+					return new Promise<void>((pathResolve) => {
+						const handleEnd = () => {
+							(path as SVGPathElement).style.strokeDashoffset = '0';
+							pathResolve();
+						};
+						path.addEventListener('animationend', handleEnd, { once: true });
+						(path as SVGPathElement).style.animation = `${keyframesName} ${duration}s ${timingFunction} forwards`;
+					});
+				})
+			);
 		}
+	};
 
-		const uniqueId = crypto.randomUUID();
-		const keyframesName = `drawPath-${uniqueId}`;
-		const styleId = `style-${uniqueId}`;
-		const styleSheet = document.createElement('style');
-		styleSheet.id = styleId;
-		styleSheet.textContent = `
-			@keyframes ${keyframesName} {
-				from { stroke-dashoffset: ${steps}; }
-				to { stroke-dashoffset: 0; }
-			}
-		`;
-		document.head.appendChild(styleSheet);
-
-		const preparePath = (path: SVGPathElement) => {
-			path.setAttribute('pathLength', steps.toString());
-			path.style.strokeDasharray = `${steps}`;
-			path.style.strokeDashoffset = `${steps}`;
-			path.style.opacity = '0';
-			path.style.strokeLinejoin = 'round';
-			path.style.strokeLinecap = 'round';
-		};
-
-		const animateSinglePath = (path: SVGPathElement) => {
-			return new Promise<void>((pathResolve) => {
-				path.style.opacity = '1';
-				path.style.animation = 'none';
-
-				const handleEnd = () => {
-					path.style.strokeDashoffset = '0';
-					pathResolve();
-				};
-
-				path.addEventListener('animationend', handleEnd, { once: true });
-				path.style.animation = `${keyframesName} ${duration}s ${timingFunction} forwards`;
-			});
-		};
-
-		const runAnimations = async () => {
-			if (sequencePaths) {
-				for (const path of paths) {
-					preparePath(path)
-				}
-				for (const path of paths) {
-					await animateSinglePath(path as SVGPathElement);
-				}
-			} else {
-				paths.forEach(preparePath as (path: Element) => void);
-				await Promise.all(
-					paths.map((path) => {
-						path.style.opacity = '1';
-						return new Promise<void>((pathResolve) => {
-							const handleEnd = () => {
-								(path as SVGPathElement).style.strokeDashoffset = '0';
-								pathResolve();
-							};
-							path.addEventListener('animationend', handleEnd, { once: true });
-							(path as SVGPathElement).style.animation = `${keyframesName} ${duration}s ${timingFunction} forwards`;
-						});
-					})
-				);
-			}
-		};
-
-		runAnimations()
-			.then(() => {
-				const styleTag = document.getElementById(styleId);
-				if (styleTag) {
-					styleTag.remove();
-				}
-				resolve();
-			})
-			.catch((error) => {
-				const styleTag = document.getElementById(styleId);
-				if (styleTag) {
-					styleTag.remove();
-				}
-				reject(error);
-			});
-	});
+	try {
+		await runAnimations();
+	} finally {
+		const styleTag = document.getElementById(styleId);
+		if (styleTag) {
+			styleTag.remove();
+		}
+	}
 };
