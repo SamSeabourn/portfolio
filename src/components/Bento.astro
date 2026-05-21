@@ -130,7 +130,11 @@ const { associatedLogos, layoutVariant = 'default' } = Astro.props;
 	}
 	@media (min-width: 1280px) {
 		.bento-container {
-			grid-template-columns: repeat(6, 1fr);
+			grid-template-columns: repeat(8, 1fr);
+		}
+
+		.item {
+			grid-column: span 2;
 		}
 
 		.variant-alt .featured.first {
