@@ -9,6 +9,9 @@ interface Props {
 	download?: boolean;
 	icon?: string;
 	id?: string;
+	iconFetchpriority?: 'high' | 'low' | 'auto';
+	iconDecoding?: 'async' | 'sync' | 'auto';
+	iconLoading?: 'lazy' | 'eager';
 }
 
 const {
@@ -21,6 +24,9 @@ const {
 	download = false,
 	icon,
 	id,
+	iconFetchpriority,
+	iconDecoding,
+	iconLoading,
 } = Astro.props;
 const Tag = href ? 'a' : 'button';
 const tiltStyle = tilt ? `transform: rotate(${tilt}deg);` : '';
@@ -39,7 +45,16 @@ const tiltStyle = tilt ? `transform: rotate(${tilt}deg);` : '';
 				download={download ? true : undefined}
 				aria-disabled={disabled ? 'true' : undefined}
 			>
-				{icon && <img src={icon} alt="" class="button-icon" />}
+				{icon && (
+					<img
+						src={icon}
+						alt=""
+						class="button-icon"
+						fetchpriority={iconFetchpriority}
+						decoding={iconDecoding}
+						loading={iconLoading}
+					/>
+				)}
 				{text}
 			</Tag>
 			<span class="warning-text">⚠️ WARNING EXPERIMENTAL ⚠️</span>
@@ -55,7 +70,16 @@ const tiltStyle = tilt ? `transform: rotate(${tilt}deg);` : '';
 			download={download ? true : undefined}
 			aria-disabled={disabled ? 'true' : undefined}
 		>
-			{icon && <img src={icon} alt="" class="button-icon" />}
+			{icon && (
+				<img
+					src={icon}
+					alt=""
+					class="button-icon"
+					fetchpriority={iconFetchpriority}
+					decoding={iconDecoding}
+					loading={iconLoading}
+				/>
+			)}
 			{text}
 		</Tag>
 	)
