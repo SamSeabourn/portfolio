@@ -56,6 +56,12 @@ const { associatedLogos, layoutVariant = 'default' } = Astro.props;
 		align-items: center;
 	}
 
+	.featured.first img,
+	.featured.first svg {
+		max-width: 100%;
+		height: auto;
+	}
+
 	.featured.second {
 		justify-content: flex-start;
 		align-items: stretch;
@@ -138,7 +144,7 @@ const { associatedLogos, layoutVariant = 'default' } = Astro.props;
 		}
 
 		.variant-alt .featured.first {
-			grid-column: span 1;
+			grid-column: span 2;
 			aspect-ratio: auto;
 			padding: 2rem;
 		}
