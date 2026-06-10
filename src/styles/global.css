@@ -6,7 +6,7 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg: #200827;
+		--bg: #2a1232;
 		--text: #b89dc4;
 		--accent: #da2bb1;
 	}
@@ -42,6 +42,7 @@ html {
 		sans-serif;
 	line-height: 1.5;
 }
+
 @media (prefers-reduced-motion: no-preference) {
 	html {
 		scroll-behavior: smooth;
@@ -75,6 +76,7 @@ button {
 	border: none;
 	cursor: pointer;
 }
+
 @font-face {
 	font-family: 'Departure Mono';
 	src: url('/DepartureMono-Regular-full.woff2') format('woff2');
@@ -82,6 +84,7 @@ button {
 	font-style: normal;
 	font-display: optional;
 }
+
 @font-face {
 	font-family: 'Departure Mono Core';
 	src: url('/DepartureMono-Regular-core.woff2') format('woff2');
