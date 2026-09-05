@@ -38,24 +38,40 @@ import { asset } from '../../utils/base-url';
 			</div>
 			<div class="pad">
 				<Paragraph heading="Open Source,Awards, and Big Wins">
-					I contributed a <a
+					Three of my fixes ship in Google's Shaka Player. All three started the same way: something
+					felt slow on a TV that came out a decade ago.
+					<br />
+					First was the <a
 						href="https://github.com/shaka-project/shaka-player/pull/9066"
 						target="_blank"
 						rel="noopener"
-						class="inline-link"
-						>4x performance improvement to Google's open source Shaka Player HLS parser</a
-					>, work that earned the Nine Digital Annual Award for "No Stone Left Unturned" (one of
-					only four awards given annually).
+						class="inline-link">HLS parser</a
+					>, redoing the same work on every segment. Lifting it out of the loop took manifest parsing
+					from roughly 1600ms to 400ms. That one won the Nine Digital Annual Award for "No Stone Left
+					Unturned", one of only four given each year.
 					<br />
-					I led a device performance initiative that brought 2015+ legacy devices onto the latest app
-					version, increasing platform coverage by 30%.
+					The second was quieter. Shaka built a <a
+						href="https://github.com/shaka-project/shaka-player/pull/10501"
+						target="_blank"
+						rel="noopener"
+						class="inline-link">fresh error object on every abortable operation</a
+					> whether anything had gone wrong or not, and building an error means building a stack trace.
+					That is not free. Deleting work that never needed doing shortened garbage collection pauses on
+					old webviews.
 					<br />
-					As a key contributor to the 2024 Olympics project, I rebuilt core navigation, improved app stability,
-					and enhanced analytics and reporting under one of the highest traffic events of the year.
+					The third was a <a
+						href="https://github.com/shaka-project/shaka-player/pull/10506"
+						target="_blank"
+						rel="noopener"
+						class="inline-link">leak</a
+					>. XHR handlers kept hold of their requests and response buffers long after the request
+					finished, and the collectors in Chrome 38 era browsers never worked it out. Releasing them
+					took the listener count from 306 to 36 over a minute of playback.
 					<br />
-					My work spans video playback engineering, performance optimisation, internal tooling, systems
-					design and architecture. The focus: making Stan work flawlessly on extremely constrained hardware
-					running ancient browser webviews.
+					Closer to home, I lead device performance initiatives. One brought 2015+ legacy devices onto
+					the latest app version and grew platform coverage by 30%, and two more are in flight right now.
+					And during the 2024 Olympics I rebuilt core navigation, steadied the app, and improved analytics
+					and reporting under the highest traffic event of our year.
 				</Paragraph>
 			</div>
 			<div class="pad">
@@ -80,8 +96,8 @@ import { asset } from '../../utils/base-url';
 						libraries that these platforms rely on.</b
 					>
 					<br />
-					Design system, analytics, player bugs, performance, platform quirks: when work lands on constrained
-					TV hardware, I'm ready to dive in. I refactored our monolithic codebase into a modular, testable
+					Design system, analytics, player bugs, performance, platform quirks: if it lands on constrained
+					TV hardware, it lands on me. I refactored our monolithic codebase into a modular, testable
 					monorepo and designed cross device testing pipelines that unblocked QA.
 					<br />
 					From remote logging and debugging tools to custom runtimes, I build the tooling that keeps a
@@ -91,8 +107,8 @@ import { asset } from '../../utils/base-url';
 			<div class="pad">
 				<Paragraph heading="Optimisations at Scale">
 					<b
-						>My performance work goes deep into ancient browsers and hardware limitations. I
-						consistently diagnose and fix real performance issues backed by real data.</b
+						>My performance work goes deep into ancient browsers and hardware limits. Every fix is
+						backed by profiling data, not guesswork.</b
 					>
 					<br />
 					Some of my work includes diagnosing and eliminating redundant React renders, optimising garbage
@@ -105,7 +121,7 @@ import { asset } from '../../utils/base-url';
 			</div>
 			<div class="pad">
 				<Paragraph heading="Team Culture">
-					<b>I believe in lifting engineering standards and driving collaboration.</b>
+					<b>Lifting the standard around me is part of the work, not a side project.</b>
 					<br />
 					I actively mentor junior developers, host organisation wide tech talks and represent our platform's
 					hardware constraints in Stan's internal design system teams.
